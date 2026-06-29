@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>演題登録 | 第35回日本呼吸器外科医会冬季学術集会</title>
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:"Hiragino Sans","Meiryo","Yu Gothic",sans-serif;font-size:14px;color:#333;background:#f5f5f5}
+  a{color:#1a5c38;text-decoration:none}
+  a:hover{text-decoration:underline}
+  #header-top{background:#1a5c38;color:#fff;padding:6px 20px;display:flex;justify-content:space-between;align-items:center;font-size:11px}
+  #header-top a{color:#c8e6c9}
+  #header-main{background:#fff;border-bottom:3px solid #1a5c38;padding:12px 20px;display:flex;align-items:center;gap:16px}
+  .header-emblem{width:52px;height:52px;background:#1a5c38;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:10px;text-align:center;line-height:1.3;font-weight:bold;flex-shrink:0}
+  .header-title .en{font-size:11px;color:#888}
+  .header-title .ja{font-size:18px;font-weight:bold;color:#1a5c38;line-height:1.3}
+  .header-title .sub{font-size:12px;color:#555}
+  nav{background:#2e7d52}
+  nav ul{list-style:none;display:flex;flex-wrap:wrap;max-width:960px;margin:0 auto}
+  nav ul li a{display:block;padding:10px 16px;color:#fff;font-size:13px;font-weight:bold;border-right:1px solid rgba(255,255,255,.2);transition:background .2s}
+  nav ul li a:hover,nav ul li a.active{background:#1a5c38;text-decoration:none}
+  .hamburger{display:none;background:#2e7d52;border:none;color:#fff;font-size:22px;padding:10px 16px;cursor:pointer;width:100%;text-align:left}
+  .nav-menu{display:flex}
+  .page-title-bar{background:linear-gradient(135deg,#1a5c38 0%,#2e7d52 100%);color:#fff;padding:24px 20px;text-align:center}
+  .page-title-bar h1{font-size:22px;margin-bottom:4px}
+  .page-title-bar .breadcrumb{font-size:11px;color:#c8e6c9}
+  .page-title-bar .breadcrumb a{color:#c8e6c9}
+  .container{max-width:960px;margin:0 auto;padding:24px 16px;display:flex;gap:24px}
+  .main-content{flex:1;min-width:0}
+  .sidebar{width:220px;flex-shrink:0}
+  .section{background:#fff;border-radius:6px;border-top:4px solid #1a5c38;padding:24px;margin-bottom:20px}
+  .section h2{font-size:16px;color:#1a5c38;border-bottom:1px solid #e0e0e0;padding-bottom:8px;margin-bottom:16px}
+  .info-box{background:#f0f7f3;border-left:4px solid #1a5c38;padding:14px 16px;margin-bottom:16px;font-size:13px;line-height:1.8}
+  .warn-box{background:#fff8e1;border-left:4px solid #f9a825;padding:14px 16px;margin-bottom:16px;font-size:13px;line-height:1.8}
+  .sidebar-box{background:#fff;border-radius:6px;border-top:3px solid #1a5c38;padding:16px;margin-bottom:16px}
+  .sidebar-box h3{font-size:13px;color:#1a5c38;font-weight:bold;margin-bottom:10px;border-bottom:1px solid #e0e0e0;padding-bottom:6px}
+  .sidebar-nav ul{list-style:none}
+  .sidebar-nav ul li a{display:block;padding:6px 4px;font-size:13px;border-bottom:1px dotted #e0e0e0;color:#333}
+  .sidebar-nav ul li a:hover{color:#1a5c38;text-decoration:none}
+  .sidebar-nav ul li:last-child a{border-bottom:none}
+  footer{background:#1a5c38;color:#c8e6c9;padding:20px;text-align:center;font-size:11px;margin-top:20px}
+  footer .footer-info{margin-bottom:6px;font-size:12px;color:#fff}
+  @media(max-width:700px){
+    .container{flex-direction:column}
+    .sidebar{width:100%}
+    .hamburger{display:block}
+    .nav-menu{display:none;flex-direction:column}
+    .nav-menu.open{display:flex}
+    nav ul{flex-direction:column}
+    nav ul li a{border-right:none;border-bottom:1px solid rgba(255,255,255,.2)}
+  }
+
+  .sch-table{width:100%;border-collapse:collapse;margin-bottom:16px}
+  .sch-table th{background:#1a5c38;color:#fff;padding:8px 12px;font-size:13px;text-align:left}
+  .sch-table td{padding:8px 12px;border:1px solid #ddd;font-size:13px}
+  .sch-table tr:nth-child(even) td{background:#f9f9f9}
+  .closed-overlay{background:#fafafa;border:2px dashed #ccc;border-radius:6px;padding:32px;text-align:center;color:#999}
+  .form-group{margin-bottom:16px}
+  .form-group label{display:block;font-size:13px;font-weight:bold;color:#333;margin-bottom:5px}
+  .form-group label .req{color:#c62828;font-size:11px;margin-left:4px}
+  .form-group label .opt{color:#888;font-size:11px;margin-left:4px}
+  .form-group input[type=text],.form-group input[type=email],.form-group input[type=tel],.form-group select,.form-group textarea{width:100%;padding:9px 12px;border:1px solid #ccc;border-radius:4px;font-size:13px;font-family:inherit}
+  .form-group input:focus,.form-group select:focus,.form-group textarea:focus{outline:none;border-color:#1a5c38;box-shadow:0 0 0 2px rgba(26,92,56,.15)}
+  .form-hint{font-size:11px;color:#888;margin-top:4px}
+  .author-row{display:flex;gap:8px;margin-bottom:8px;align-items:center}
+  .author-row input{flex:1}
+  .add-author-btn{background:#e8f5e9;border:1px solid #1a5c38;color:#1a5c38;padding:6px 14px;border-radius:4px;font-size:12px;cursor:pointer}
+  .submit-btn{display:block;width:100%;background:#1a5c38;color:#fff;border:none;padding:14px;font-size:16px;font-weight:bold;border-radius:6px;cursor:pointer;margin-top:24px}
+  .submit-btn:hover{background:#2e7d52}
+</style>
+</head>
+<body>
+<div id="header-top">
+  <span>日本呼吸器外科学会 関連学術集会</span>
+  <a href="mailto:misaki.noriyuki@kagawa-u.ac.jp">お問い合わせ</a>
+</div>
+<div id="header-main">
+  <div class="header-emblem">第35回<br>SSM</div>
+  <div class="header-title">
+    <div class="en">The 35th Winter Meeting of Society of Surgeons of the chest</div>
+    <div class="ja">第35回 日本呼吸器外科医会 冬季学術集会</div>
+    <div class="sub">会長：矢島 俊樹（香川大学医学部 呼吸器・乳腺内分泌外科 教授）</div>
+  </div>
+</div>
+<nav>
+  <button class="hamburger" onclick="document.querySelector('.nav-menu').classList.toggle('open')">☰ メニュー</button>
+  <div class="nav-menu"><ul><li><a href="index.html">トップ</a></li><li><a href="greeting.html">ご挨拶</a></li><li><a href="guide.html">開催概要</a></li><li><a href="program.html">プログラム</a></li><li><a href="registration.html" class="active">演題登録</a></li><li><a href="participation.html">参加登録</a></li><li><a href="access.html">会場案内</a></li></ul></div>
+</nav>
+<div class="page-title-bar">
+  <div class="breadcrumb"><a href="index.html">トップ</a> &gt; 演題登録</div>
+  <h1>演題登録</h1>
+</div>
+<div class="container">
+  <div class="main-content">
+    <div class="section">
+      <h2>演題募集要項</h2>
+      <div class="info-box" id="regPeriodInfo">
+        <strong>募集期間</strong>：2027年〇月〇日〜 2027年〇月〇日 23:59
+      </div>
+      <table class="sch-table">
+        <tr><th style="width:160px">演題登録開始</th><td>2027年〇月〇日（調整中）</td></tr>
+        <tr><th>演題登録締切</th><td>2027年〇月〇日（調整中）</td></tr>
+        <tr><th>採否通知</th><td>2027年〇月〇日（調整中）</td></tr>
+        <tr><th>発表形式</th><td>口演（スライド発表）</td></tr>
+        <tr><th>発表時間</th><td>発表5分 ／ 質疑応答3分（予定）</td></tr>
+      </table>
+      <div class="warn-box">
+        <strong>⚠️ ご注意</strong><br>
+        ・発表者（筆頭演者）は参加登録が必須です。<br>
+        ・抄録の文字数は600字以内でお願いします。<br>
+        ・登録後の変更は締切日まで可能です。事務局までご連絡ください。
+      </div>
+    </div>
+    <div class="section">
+      <h2>演題登録フォーム</h2>
+      <div id="closedOverlay" class="closed-overlay">
+        <div style="font-size:36px;margin-bottom:10px">📋</div>
+        <div style="font-size:16px;font-weight:bold;color:#555;margin-bottom:8px" id="closedMessage">演題募集期間外です</div>
+        <div id="closedDetail"></div>
+      </div>
+      <form id="registrationForm" onsubmit="handleSubmit(event)" style="display:none">
+        <div class="form-group">
+          <label>演題カテゴリー <span class="req">必須</span></label>
+          <select name="category" required>
+            <option value="">-- 選択してください --</option>
+            <option>肺癌（外科治療）</option><option>肺癌（術後補助療法）</option>
+            <option>縦隔・胸膜疾患</option><option>気胸・肺嚢胞</option>
+            <option>感染症・炎症性疾患</option><option>胸腔鏡手術・低侵襲手術</option>
+            <option>合併症・周術期管理</option><option>その他</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>演題名 <span class="req">必須</span></label>
+          <input type="text" name="title" placeholder="演題名を入力してください" required>
+        </div>
+        <div class="form-group">
+          <label>著者（演者・共著者） <span class="req">必須</span></label>
+          <p class="form-hint" style="margin-bottom:8px">筆頭演者を最初に入力してください。</p>
+          <div id="authorList">
+            <div class="author-row">
+              <input type="text" placeholder="氏名（例：山田 太郎）" required>
+              <input type="text" placeholder="所属番号（①）" style="width:80px;flex:none">
+              <span style="font-size:11px;color:#1a5c38;font-weight:bold;white-space:nowrap">👤 筆頭演者</span>
+            </div>
+          </div>
+          <button type="button" class="add-author-btn" onclick="addAuthor()">＋ 著者を追加</button>
+        </div>
+        <div class="form-group">
+          <label>所属機関 <span class="req">必須</span></label>
+          <textarea name="affiliations" rows="3" placeholder="① ○○大学医学部 呼吸器外科&#10;② ○○病院 外科"></textarea>
+        </div>
+        <div class="form-group">
+          <label>抄録本文 <span class="req">必須</span>（600字以内）</label>
+          <textarea name="abstract" rows="8" maxlength="600" oninput="document.getElementById('charCount').textContent=this.value.length" placeholder="目的、方法、結果、考察・結語の順に記載してください。"></textarea>
+          <div class="form-hint"><span id="charCount">0</span> / 600字</div>
+        </div>
+        <hr style="border:none;border-top:1px solid #eee;margin:20px 0">
+        <div class="form-group">
+          <label>氏名（筆頭演者） <span class="req">必須</span></label>
+          <input type="text" name="presenter_name" placeholder="山田 太郎" required>
+        </div>
+        <div class="form-group">
+          <label>メールアドレス <span class="req">必須</span></label>
+          <input type="email" name="email" placeholder="example@hospital.jp" required>
+          <div class="form-hint">採否通知をお送りします。</div>
+        </div>
+        <div class="form-group">
+          <label>電話番号 <span class="opt">任意</span></label>
+          <input type="tel" name="tel" placeholder="000-0000-0000">
+        </div>
+        <button type="submit" class="submit-btn">確認画面へ進む →</button>
+      </form>
+    </div>
+    <div class="section">
+      <h2>お問い合わせ</h2>
+      <p style="font-size:13px;line-height:1.8">演題登録に関するお問い合わせは事務局までご連絡ください。</p>
+      <p style="font-size:13px;margin-top:8px">📧 <a href="mailto:misaki.noriyuki@kagawa-u.ac.jp">misaki.noriyuki@kagawa-u.ac.jp</a><br>📞 087-898-5111（担当：三崎）</p>
+    </div>
+  </div>
+  <div class="sidebar">
+    <div class="sidebar-box sidebar-nav">
+      <h3>サイトメニュー</h3>
+      <ul>
+        <li><a href="index.html">トップページ</a></li>
+        <li><a href="greeting.html">ご挨拶</a></li>
+        <li><a href="guide.html">開催概要</a></li>
+        <li><a href="program.html">プログラム</a></li>
+        <li><a href="registration.html">演題登録</a></li>
+        <li><a href="participation.html">参加登録</a></li>
+        <li><a href="access.html">会場案内</a></li>
+      </ul>
+    </div>
+    <div class="sidebar-box">
+      <h3>協賛企業</h3>
+      <p style="font-size:11px;color:#aaa;text-align:center;padding:8px 0;">（調整中）</p>
+    </div>
+  </div>
+</div>
+<footer>
+  <div class="footer-info">第35回 日本呼吸器外科医会 冬季学術集会</div>
+  <div>事務局：香川大学医学部 呼吸器・乳腺内分泌外科　担当：三崎 伯幸</div>
+  <div>TEL: 087-898-5111 ／ E-mail: misaki.noriyuki@kagawa-u.ac.jp</div>
+  <div style="margin-top:8px;">Copyright &copy; 2028 The 35th Winter Meeting of Society of Surgeons of the chest. All Rights Reserved.</div>
+</footer>
+<script>
+const REGISTRATION_START = new Date('2027-06-01T00:00:00');
+const REGISTRATION_END   = new Date('2027-10-31T23:59:59');
+window.addEventListener('DOMContentLoaded',function(){
+  const now=new Date();
+  const fmt=d=>`${d.getFullYear()}年${d.getMonth()+1}月${d.getDate()}日`;
+  if(now<REGISTRATION_START){
+    document.getElementById('closedMessage').textContent='演題募集期間前です';
+    document.getElementById('closedDetail').textContent=`開始日：${fmt(REGISTRATION_START)}`;
+  }else if(now>REGISTRATION_END){
+    document.getElementById('closedMessage').textContent='演題募集を締め切りました';
+    document.getElementById('closedDetail').textContent=`締切日：${fmt(REGISTRATION_END)}`;
+  }else{
+    document.getElementById('closedOverlay').style.display='none';
+    document.getElementById('registrationForm').style.display='block';
+  }
+});
+function addAuthor(){
+  const list=document.getElementById('authorList');
+  const row=document.createElement('div'); row.className='author-row';
+  row.innerHTML=`<input type="text" placeholder="共著者氏名"><input type="text" placeholder="所属番号" style="width:80px;flex:none"><button type="button" onclick="this.parentElement.remove()" style="background:#fee;border:1px solid #ccc;border-radius:4px;padding:4px 8px;cursor:pointer;font-size:12px">削除</button>`;
+  list.appendChild(row);
+}
+function handleSubmit(e){e.preventDefault();alert('確認画面（実装予定）');}
+</script>
+</body>
+</html>
