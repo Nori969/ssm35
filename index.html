@@ -53,7 +53,21 @@
 
   .hero{position:relative;height:300px;overflow:hidden;display:flex;align-items:flex-end}
   .hero-collage{position:absolute;inset:0}
-  .hero-collage div{width:100%;height:100%;background-size:cover;background-position:center}
+  .hero-collage div{position:absolute;inset:0;width:100%;height:100%;background-size:cover;background-position:center;opacity:0;animation:heroKenBurns 18s ease-in-out infinite}
+  .hero-collage div:nth-child(1){animation-delay:0s;--kb-x:5%;--kb-y:0%}
+  .hero-collage div:nth-child(2){animation-delay:6s;--kb-x:-3%;--kb-y:-2%}
+  .hero-collage div:nth-child(3){animation-delay:12s;--kb-x:0%;--kb-y:-6%}
+  @keyframes heroKenBurns{
+    0%{opacity:0;transform:scale(1.05) translate(0,0)}
+    4%{opacity:1}
+    28%{opacity:1}
+    33%{opacity:0;transform:scale(1.18) translate(var(--kb-x),var(--kb-y))}
+    100%{opacity:0}
+  }
+  @media(prefers-reduced-motion:reduce){
+    .hero-collage div{animation:none;opacity:0}
+    .hero-collage div:first-child{opacity:1}
+  }
   .hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(26,92,56,.85) 0%,rgba(26,92,56,.3) 60%,transparent 100%)}
   .hero-text{position:relative;z-index:1;color:#fff;padding:24px 32px;width:100%}
   .hero-text .en{font-size:12px;opacity:.8;margin-bottom:4px}
@@ -75,6 +89,15 @@
   .sch-card .label{font-size:11px;color:#1a5c38;font-weight:bold;margin-bottom:4px}
   .sch-card .date{font-size:13px;font-weight:bold;color:#333}
   @media(max-width:700px){.schedule-grid{grid-template-columns:1fr}.hero-text h1{font-size:18px}.date-bar{gap:16px}}
+
+  .quick-menu{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+  .quick-menu a{display:flex;align-items:center;gap:10px;background:#f0f7f3;border:1px solid #b2dfca;border-radius:8px;padding:14px 16px;color:#1a5c38;font-weight:bold;font-size:13px}
+  .quick-menu a:hover{background:#dff0e4;text-decoration:none}
+  .quick-menu .qm-icon{font-size:20px;flex-shrink:0}
+  @media(max-width:700px){
+    .quick-menu{grid-template-columns:1fr}
+    .quick-menu a{padding:16px 18px;font-size:15px}
+  }
 </style>
 </head>
 <body>
@@ -95,52 +118,54 @@
 </nav>
 <div class="hero">
   <div class="hero-collage">
-    <div style="background-image:url('sc-086-2.jpg')"></div>
+    <div style="background-image:url('karuizawa-winter.jpg')"></div>
+    <div style="background-image:url('karuizawa-entrance.jpg')"></div>
+    <div style="background-image:url('karuizawa-onsen.jpg')"></div>
   </div>
   <div class="hero-overlay"></div>
   <div class="hero-text">
     <div class="en">The 35th Winter Meeting of Society of Surgeons of the chest</div>
     <h1>第35回 日本呼吸器外科医会<br>冬季学術集会 2028</h1>
     <div class="meta">会長：矢島 俊樹（香川大学医学部 呼吸器・乳腺内分泌外科 教授）<br>
-    2028年2月（予定）</div>
+    2028年2月12日（土）〜13日（日）　軽井沢プリンスホテル ウエスト</div>
     <a href="participation.html" class="hero-btn">参加登録はこちら →</a>
   </div>
 </div>
 <div class="date-bar">
-  <span>演題登録：<strong>2027年〇月〇日〜〇月〇日</strong></span>
-  <span>参加費：<strong>（調整中）</strong></span>
-  <span>会場：<strong>（調整中）</strong></span>
+  <span>会期：<strong>2028年2月12日（土）〜13日（日）</strong></span>
+  <span>演題登録：<strong>2027年7月1日〜9月15日（予定）</strong></span>
+  <span>会場：<strong>軽井沢プリンスホテル ウエスト</strong></span>
 </div>
 <div class="container">
   <div class="main-content">
     <div class="section">
+      <h2>メニュー</h2>
+      <div class="quick-menu">
+        <a href="greeting.html"><span class="qm-icon">✉️</span>ご挨拶</a>
+        <a href="guide.html"><span class="qm-icon">📋</span>開催概要</a>
+        <a href="program.html"><span class="qm-icon">🗓️</span>プログラム</a>
+        <a href="registration.html"><span class="qm-icon">📝</span>演題登録</a>
+        <a href="participation.html"><span class="qm-icon">👤</span>参加登録</a>
+        <a href="access.html"><span class="qm-icon">📍</span>会場案内</a>
+      </div>
+    </div>
+    <div class="section">
       <h2>新着情報</h2>
       <ul class="news-list">
-        <li><span class="news-date">2026.06.03</span><span class="news-badge">NEW</span><span>第35回日本呼吸器外科医会冬季学術集会のホームページを公開しました。</span></li>
+        <li><span class="news-date">2026.08.21</span><span class="news-badge">NEW</span><span>会期・会場を確定し、ホームページを更新しました。</span></li>
+        <li><span class="news-date">2026.06.03</span><span>第35回日本呼吸器外科医会冬季学術集会のホームページを公開しました。</span></li>
       </ul>
     </div>
     <div class="section">
       <h2>重要な日程</h2>
       <div class="schedule-grid">
-        <div class="sch-card"><div class="icon">📝</div><div class="label">演題登録</div><div class="date">2027年〇月〇日〜</div></div>
-        <div class="sch-card"><div class="icon">👤</div><div class="label">参加登録</div><div class="date">2027年〇月〇日〜</div></div>
+        <div class="sch-card"><div class="icon">📝</div><div class="label">演題登録</div><div class="date">2027年7月1日〜（予定）</div></div>
+        <div class="sch-card"><div class="icon">👤</div><div class="label">参加登録</div><div class="date">2027年4月〜（予定）</div></div>
         <div class="sch-card"><div class="icon">📋</div><div class="label">テーマ</div><div class="date">呼吸器外科学の再考</div></div>
       </div>
     </div>
   </div>
   <div class="sidebar">
-    <div class="sidebar-box sidebar-nav">
-      <h3>サイトメニュー</h3>
-      <ul>
-        <li><a href="index.html">トップページ</a></li>
-        <li><a href="greeting.html">ご挨拶</a></li>
-        <li><a href="guide.html">開催概要</a></li>
-        <li><a href="program.html">プログラム</a></li>
-        <li><a href="registration.html">演題登録</a></li>
-        <li><a href="participation.html">参加登録</a></li>
-        <li><a href="access.html">会場案内</a></li>
-      </ul>
-    </div>
     <div class="sidebar-box">
       <h3>協賛企業</h3>
       <p style="font-size:11px;color:#aaa;text-align:center;padding:8px 0;">（調整中）</p>
