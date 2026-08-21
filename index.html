@@ -9,19 +9,28 @@
   body{font-family:"Hiragino Sans","Meiryo","Yu Gothic",sans-serif;font-size:14px;color:#333;background:#f5f5f5}
   a{color:#1a5c38;text-decoration:none}
   a:hover{text-decoration:underline}
-  #header-top{background:#1a5c38;color:#fff;padding:6px 20px;display:flex;justify-content:space-between;align-items:center;font-size:11px}
-  #header-top a{color:#c8e6c9}
-  #header-main{background:#fff;border-bottom:3px solid #1a5c38;padding:12px 20px;display:flex;align-items:center;gap:16px}
-  .header-emblem{width:52px;height:52px;background:#1a5c38;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:10px;text-align:center;line-height:1.3;font-weight:bold;flex-shrink:0}
-  .header-title .en{font-size:11px;color:#888}
-  .header-title .ja{font-size:18px;font-weight:bold;color:#1a5c38;line-height:1.3}
-  .header-title .sub{font-size:12px;color:#555}
-  nav{background:#2e7d52}
-  nav ul{list-style:none;display:flex;flex-wrap:wrap;max-width:960px;margin:0 auto}
-  nav ul li a{display:block;padding:10px 16px;color:#fff;font-size:13px;font-weight:bold;border-right:1px solid rgba(255,255,255,.2);transition:background .2s}
-  nav ul li a:hover,nav ul li a.active{background:#1a5c38;text-decoration:none}
-  .hamburger{display:none;background:#2e7d52;border:none;color:#fff;font-size:22px;padding:10px 16px;cursor:pointer;width:100%;text-align:left}
-  .nav-menu{display:flex}
+  .intro-splash{height:100vh;min-height:480px;background:#0a1410;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:#fff;position:relative;overflow:hidden;cursor:pointer}
+  .intro-splash::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 40%,rgba(46,125,82,.25) 0%,transparent 60%)}
+  .intro-en{position:relative;font-size:12px;letter-spacing:3px;color:#9fcdb0;opacity:0;animation:introFadeUp 1.2s ease forwards .3s}
+  .intro-ja{position:relative;font-size:30px;font-weight:bold;margin-top:16px;line-height:1.6;opacity:0;animation:introFadeUp 1.2s ease forwards .9s}
+  .intro-sub{position:relative;font-size:13px;color:#c8e6c9;margin-top:14px;opacity:0;animation:introFadeUp 1.2s ease forwards 1.5s}
+  .intro-scroll{position:absolute;bottom:36px;font-size:11px;letter-spacing:3px;color:#9fcdb0;opacity:0;animation:introFadeUp 1s ease forwards 2.1s,introBounce 2s ease-in-out infinite 3.1s}
+  @keyframes introFadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+  @keyframes introBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(8px)}}
+  @media(prefers-reduced-motion:reduce){
+    .intro-en,.intro-ja,.intro-sub,.intro-scroll{animation:none;opacity:1}
+  }
+  @media(max-width:700px){.intro-ja{font-size:22px}}
+
+  .mini-bar{position:fixed;top:0;left:0;right:0;z-index:30;display:flex;justify-content:space-between;align-items:center;padding:20px 24px;color:#fff}
+  .mini-bar-label{font-size:12px;letter-spacing:2px;font-weight:bold;text-shadow:0 1px 6px rgba(0,0,0,.6)}
+  .menu-btn{background:none;border:none;cursor:pointer;width:34px;height:22px;display:flex;flex-direction:column;justify-content:center;gap:6px;padding:0}
+  .menu-btn span{display:block;height:2px;background:#fff;border-radius:2px;box-shadow:0 1px 4px rgba(0,0,0,.6)}
+  .menu-overlay{position:fixed;inset:0;background:#0a1410;z-index:40;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:26px;opacity:0;pointer-events:none;transition:opacity .3s ease}
+  .menu-overlay.open{opacity:1;pointer-events:auto}
+  .menu-overlay a{color:#fff;font-size:24px;font-weight:bold;letter-spacing:1px;opacity:.9}
+  .menu-overlay a:hover{color:#9fcdb0;text-decoration:none;opacity:1}
+  .menu-close{position:absolute;top:22px;right:26px;background:none;border:none;color:#fff;font-size:26px;cursor:pointer;line-height:1}
   .page-title-bar{background:linear-gradient(135deg,#1a5c38 0%,#2e7d52 100%);color:#fff;padding:24px 20px;text-align:center}
   .page-title-bar h1{font-size:22px;margin-bottom:4px}
   .page-title-bar .breadcrumb{font-size:11px;color:#c8e6c9}
@@ -44,36 +53,47 @@
   @media(max-width:700px){
     .container{flex-direction:column}
     .sidebar{width:100%}
-    .hamburger{display:block}
-    .nav-menu{display:none;flex-direction:column}
-    .nav-menu.open{display:flex}
-    nav ul{flex-direction:column}
-    nav ul li a{border-right:none;border-bottom:1px solid rgba(255,255,255,.2)}
   }
 
-  .hero{position:relative;height:300px;overflow:hidden;display:flex;align-items:flex-end}
+  .hero{position:relative;height:100vh;min-height:560px;overflow:hidden;display:flex;align-items:flex-end}
+  @media(max-width:700px){.hero{height:80vh;min-height:440px}}
   .hero-collage{position:absolute;inset:0}
-  .hero-collage div{position:absolute;inset:0;width:100%;height:100%;background-size:cover;background-position:center;opacity:0;animation:heroKenBurns 18s ease-in-out infinite}
-  .hero-collage div:nth-child(1){animation-delay:0s;--kb-x:5%;--kb-y:0%}
-  .hero-collage div:nth-child(2){animation-delay:6s;--kb-x:-3%;--kb-y:-2%}
-  .hero-collage div:nth-child(3){animation-delay:12s;--kb-x:0%;--kb-y:-6%}
-  @keyframes heroKenBurns{
-    0%{opacity:0;transform:scale(1.05) translate(0,0)}
+  .hero-collage div{position:absolute;inset:0;width:100%;height:100%;background-size:cover;opacity:0}
+  .hero-collage div:nth-child(1){animation:heroPan1 24s ease-in-out infinite;animation-delay:0s}
+  .hero-collage div:nth-child(2){animation:heroPan2 24s ease-in-out infinite;animation-delay:8s}
+  .hero-collage div:nth-child(3){animation:heroPan3 24s ease-in-out infinite;animation-delay:16s}
+  @keyframes heroPan1{
+    0%{opacity:0;transform:scale(1.08);background-position:35% 50%}
     4%{opacity:1}
     28%{opacity:1}
-    33%{opacity:0;transform:scale(1.18) translate(var(--kb-x),var(--kb-y))}
+    33%{opacity:0;transform:scale(1.22);background-position:65% 50%}
+    100%{opacity:0}
+  }
+  @keyframes heroPan2{
+    0%{opacity:0;transform:scale(1.1);background-position:10% 55%}
+    4%{opacity:1}
+    28%{opacity:1}
+    33%{opacity:0;transform:scale(1.24);background-position:90% 55%}
+    100%{opacity:0}
+  }
+  @keyframes heroPan3{
+    0%{opacity:0;transform:scale(1.2);background-position:50% 45%}
+    4%{opacity:1}
+    28%{opacity:1}
+    33%{opacity:0;transform:scale(1);background-position:65% 60%}
     100%{opacity:0}
   }
   @media(prefers-reduced-motion:reduce){
-    .hero-collage div{animation:none;opacity:0}
+    .hero-collage div{animation:none !important;opacity:0}
     .hero-collage div:first-child{opacity:1}
   }
   .hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(26,92,56,.85) 0%,rgba(26,92,56,.3) 60%,transparent 100%)}
-  .hero-text{position:relative;z-index:1;color:#fff;padding:24px 32px;width:100%}
-  .hero-text .en{font-size:12px;opacity:.8;margin-bottom:4px}
-  .hero-text h1{font-size:26px;font-weight:bold;line-height:1.3;margin-bottom:8px}
-  .hero-text .meta{font-size:13px;opacity:.9}
-  .hero-btn{display:inline-block;margin-top:12px;background:#fff;color:#1a5c38;padding:8px 20px;border-radius:4px;font-size:13px;font-weight:bold}
+  .hero-text{position:relative;z-index:1;color:#fff;padding:0 40px 56px;width:100%}
+  .hero-text .en{font-size:12px;letter-spacing:2px;opacity:.85;margin-bottom:10px}
+  .hero-text h1{font-size:38px;font-weight:bold;line-height:1.35;margin-bottom:14px}
+  .hero-text .meta{font-size:14px;opacity:.9}
+  .hero-btn{display:inline-block;margin-top:18px;background:#fff;color:#1a5c38;padding:10px 24px;border-radius:4px;font-size:13px;font-weight:bold}
+  @media(max-width:700px){.hero-text{padding:0 24px 40px}.hero-text h1{font-size:24px}}
   .hero-btn:hover{background:#e8f5e9;text-decoration:none}
   .date-bar{background:#1a5c38;color:#fff;display:flex;justify-content:center;gap:40px;padding:10px 20px;font-size:12px;flex-wrap:wrap}
   .date-bar span{white-space:nowrap}
@@ -88,46 +108,53 @@
   .sch-card .icon{font-size:24px;margin-bottom:6px}
   .sch-card .label{font-size:11px;color:#1a5c38;font-weight:bold;margin-bottom:4px}
   .sch-card .date{font-size:13px;font-weight:bold;color:#333}
-  @media(max-width:700px){.schedule-grid{grid-template-columns:1fr}.hero-text h1{font-size:18px}.date-bar{gap:16px}}
+  @media(max-width:700px){.schedule-grid{grid-template-columns:1fr}.date-bar{gap:16px}}
 
-  .quick-menu{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-  .quick-menu a{display:flex;align-items:center;gap:10px;background:#f0f7f3;border:1px solid #b2dfca;border-radius:8px;padding:14px 16px;color:#1a5c38;font-weight:bold;font-size:13px}
-  .quick-menu a:hover{background:#dff0e4;text-decoration:none}
-  .quick-menu .qm-icon{font-size:20px;flex-shrink:0}
-  @media(max-width:700px){
-    .quick-menu{grid-template-columns:1fr}
-    .quick-menu a{padding:16px 18px;font-size:15px}
-  }
+  .page-cards{max-width:960px;margin:0 auto;padding:36px 16px;display:flex;flex-direction:column;gap:18px}
+  .page-cards h2{color:#1a5c38;font-size:20px;margin-bottom:4px}
+  .page-cards .lead{color:#666;font-size:13px;margin-bottom:8px}
+  .page-card{position:relative;display:block;height:230px;border-radius:10px;overflow:hidden;background-size:cover;background-position:center;color:#fff;box-shadow:0 10px 26px rgba(26,92,56,.18)}
+  .page-card.pc-tile{background-image:linear-gradient(135deg,#1a5c38 0%,#2e7d52 100%)}
+  .page-card .pc-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,20,15,.75) 0%,rgba(10,20,15,.2) 55%,transparent 100%)}
+  .page-card .pc-text{position:absolute;left:26px;right:26px;bottom:20px}
+  .page-card .pc-icon{font-size:22px}
+  .page-card .pc-text h3{font-size:20px;margin:6px 0 4px}
+  .page-card .pc-text p{font-size:12px;opacity:.9}
+  .page-card:hover{transform:translateY(-2px);transition:transform .2s ease;text-decoration:none}
+  @media(max-width:700px){.page-card{height:190px}}
 </style>
 </head>
 <body>
-<div id="header-top">
-  <span>日本呼吸器外科学会 関連学術集会</span>
+<div class="intro-splash" id="introSplash">
+  <div class="intro-en">THE 35TH WINTER MEETING OF SOCIETY OF SURGEONS OF THE CHEST</div>
+  <div class="intro-ja">第35回 日本呼吸器外科医会<br>冬季学術集会</div>
+  <div class="intro-sub">2028年2月12日（土）〜13日（日）　軽井沢プリンスホテル ウエスト</div>
+  <div class="intro-scroll">SCROLL ↓</div>
 </div>
-<div id="header-main">
-  <div class="header-emblem">第35回<br>SSM</div>
-  <div class="header-title">
-    <div class="en">The 35th Winter Meeting of Society of Surgeons of the chest</div>
-    <div class="ja">第35回 日本呼吸器外科医会 冬季学術集会</div>
-    <div class="sub">会長：矢島 俊樹（香川大学医学部 呼吸器・乳腺内分泌外科 教授）</div>
-  </div>
+<div class="mini-bar">
+  <div class="mini-bar-label">第35回 SSM</div>
+  <button class="menu-btn" id="menuBtn" aria-label="メニューを開く"><span></span><span></span></button>
 </div>
-<nav>
-  <button class="hamburger" onclick="document.querySelector('.nav-menu').classList.toggle('open')">☰ メニュー</button>
-  <div class="nav-menu"><ul><li><a href="index.html" class="active">トップ</a></li><li><a href="greeting.html">ご挨拶</a></li><li><a href="guide.html">開催概要</a></li><li><a href="program.html">プログラム</a></li><li><a href="registration.html">演題登録</a></li><li><a href="participation.html">参加登録</a></li><li><a href="access.html">会場案内</a></li></ul></div>
-</nav>
+<div class="menu-overlay" id="menuOverlay">
+  <button class="menu-close" id="menuClose" aria-label="閉じる">✕</button>
+  <a href="greeting.html">ご挨拶</a>
+  <a href="guide.html">開催概要</a>
+  <a href="program.html">プログラム</a>
+  <a href="registration.html">演題登録</a>
+  <a href="participation.html">参加登録</a>
+  <a href="access.html">会場案内</a>
+</div>
 <div class="hero">
   <div class="hero-collage">
     <div style="background-image:url('karuizawa-winter.jpg')"></div>
+    <div style="background-image:url('karuizawa-onsen-uchiyu.jpg')"></div>
     <div style="background-image:url('karuizawa-entrance.jpg')"></div>
-    <div style="background-image:url('karuizawa-onsen.jpg')"></div>
   </div>
   <div class="hero-overlay"></div>
   <div class="hero-text">
     <div class="en">The 35th Winter Meeting of Society of Surgeons of the chest</div>
     <h1>第35回 日本呼吸器外科医会<br>冬季学術集会 2028</h1>
-    <div class="meta">会長：矢島 俊樹（香川大学医学部 呼吸器・乳腺内分泌外科 教授）<br>
-    2028年2月12日（土）〜13日（日）　軽井沢プリンスホテル ウエスト</div>
+    <div class="meta">2028年2月12日（土）〜13日（日）　軽井沢プリンスホテル ウエスト</div>
     <a href="participation.html" class="hero-btn">参加登録はこちら →</a>
   </div>
 </div>
@@ -136,19 +163,40 @@
   <span>演題登録：<strong>2027年7月1日〜9月15日（予定）</strong></span>
   <span>会場：<strong>軽井沢プリンスホテル ウエスト</strong></span>
 </div>
+<div class="page-cards">
+  <h2>ページを選ぶ</h2>
+  <div class="lead">気になる項目からご覧ください。</div>
+  <a class="page-card" href="greeting.html" style="background-image:url('yajima.jpg')">
+    <div class="pc-overlay"></div>
+    <div class="pc-text"><span class="pc-icon">✉️</span><h3>ご挨拶</h3><p>会長 矢島 俊樹より</p></div>
+  </a>
+  <a class="page-card" href="guide.html" style="background-image:url('karuizawa-panorama.jpg')">
+    <div class="pc-overlay"></div>
+    <div class="pc-text"><span class="pc-icon">📋</span><h3>開催概要</h3><p>会期・会場・参加費など</p></div>
+  </a>
+  <a class="page-card" href="program.html" style="background-image:url('karuizawa-hall.jpg')">
+    <div class="pc-overlay"></div>
+    <div class="pc-text"><span class="pc-icon">🗓️</span><h3>プログラム</h3><p>確定次第掲載します</p></div>
+  </a>
+  <a class="page-card" href="registration.html" style="background-image:url('registration-desk.webp')">
+    <div class="pc-overlay"></div>
+    <div class="pc-text"><span class="pc-icon">📝</span><h3>演題登録</h3><p>2027年7月1日〜9月15日（予定）</p></div>
+  </a>
+  <a class="page-card" href="participation.html" style="background-image:url('participation-seminar.jpg')">
+    <div class="pc-overlay"></div>
+    <div class="pc-text"><span class="pc-icon">👤</span><h3>参加登録</h3><p>参加費・お申し込み方法</p></div>
+  </a>
+  <a class="page-card" href="access.html" style="background-image:url('karuizawa-entrance.jpg')">
+    <div class="pc-overlay"></div>
+    <div class="pc-text"><span class="pc-icon">📍</span><h3>会場案内</h3><p>軽井沢プリンスホテル ウエスト</p></div>
+  </a>
+  <a class="page-card" href="https://www.princehotels.co.jp/ski/karuizawa/" target="_blank" rel="noopener" style="background-image:url('karuizawa-ski.jpg')">
+    <div class="pc-overlay"></div>
+    <div class="pc-text"><span class="pc-icon">⛷️</span><h3>ウインタースポーツ</h3><p>軽井沢プリンスホテルスキー場（外部サイト）</p></div>
+  </a>
+</div>
 <div class="container">
   <div class="main-content">
-    <div class="section">
-      <h2>メニュー</h2>
-      <div class="quick-menu">
-        <a href="greeting.html"><span class="qm-icon">✉️</span>ご挨拶</a>
-        <a href="guide.html"><span class="qm-icon">📋</span>開催概要</a>
-        <a href="program.html"><span class="qm-icon">🗓️</span>プログラム</a>
-        <a href="registration.html"><span class="qm-icon">📝</span>演題登録</a>
-        <a href="participation.html"><span class="qm-icon">👤</span>参加登録</a>
-        <a href="access.html"><span class="qm-icon">📍</span>会場案内</a>
-      </div>
-    </div>
     <div class="section">
       <h2>新着情報</h2>
       <ul class="news-list">
@@ -178,5 +226,40 @@
   <div>TEL: 087-898-5111</div>
   <div style="margin-top:8px;">Copyright &copy; 2028 The 35th Winter Meeting of Society of Surgeons of the chest. All Rights Reserved.</div>
 </footer>
+<script>
+(function(){
+  var splash = document.getElementById('introSplash');
+  if(!splash) return;
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var advanced = false;
+  function advance(){
+    if(advanced) return;
+    advanced = true;
+    window.scrollTo({top: splash.offsetHeight, behavior: reduceMotion ? 'auto' : 'smooth'});
+  }
+  var timer = setTimeout(advance, 6000);
+  splash.addEventListener('click', function(){
+    clearTimeout(timer);
+    advance();
+  });
+  window.addEventListener('scroll', function(){
+    advanced = true;
+    clearTimeout(timer);
+  }, {once:true, passive:true});
+})();
+
+(function(){
+  var btn = document.getElementById('menuBtn');
+  var close = document.getElementById('menuClose');
+  var overlay = document.getElementById('menuOverlay');
+  if(!btn || !overlay) return;
+  function open(){ overlay.classList.add('open'); }
+  function hide(){ overlay.classList.remove('open'); }
+  btn.addEventListener('click', open);
+  close.addEventListener('click', hide);
+  overlay.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', hide); });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape') hide(); });
+})();
+</script>
 </body>
 </html>
