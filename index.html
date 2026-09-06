@@ -111,10 +111,11 @@
   .sch-card .date{font-size:13px;font-weight:bold;color:#333}
   @media(max-width:700px){.schedule-grid{grid-template-columns:1fr}.date-bar{gap:16px}}
 
+  .page-cards-wrap{background:linear-gradient(rgba(8,18,14,.82),rgba(8,18,14,.82)),url('karuizawa-winter.jpg');background-size:cover;background-position:center}
   .page-cards{max-width:960px;margin:0 auto;padding:36px 16px;display:flex;flex-direction:column;gap:18px}
-  .page-cards h2{color:#1a5c38;font-size:20px;margin-bottom:4px}
-  .page-cards .lead{color:#666;font-size:13px;margin-bottom:8px}
-  .page-card{position:relative;display:block;height:230px;border-radius:10px;overflow:hidden;background-size:cover;background-position:center;color:#fff;box-shadow:0 10px 26px rgba(26,92,56,.18)}
+  .page-cards h2{color:#fff;font-size:20px;margin-bottom:4px}
+  .page-cards .lead{color:#c8e6c9;font-size:13px;margin-bottom:8px}
+  .page-card{position:relative;display:block;height:230px;border-radius:10px;overflow:hidden;background-size:cover;background-position:center;color:#fff;box-shadow:0 10px 26px rgba(0,0,0,.35)}
   .page-card.pc-tile{background-image:linear-gradient(135deg,#1a5c38 0%,#2e7d52 100%)}
   .page-card .pc-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,20,15,.75) 0%,rgba(10,20,15,.2) 55%,transparent 100%)}
   .page-card .pc-text{position:absolute;left:26px;right:26px;bottom:20px}
@@ -123,6 +124,10 @@
   .page-card .pc-text p{font-size:12px;opacity:.9}
   .page-card:hover{transform:translateY(-2px);transition:transform .2s ease;text-decoration:none}
   @media(max-width:700px){.page-card{height:190px}}
+  @media(min-width:900px){
+    .page-cards{max-width:1100px;display:grid;grid-template-columns:1fr 1fr;gap:22px;padding:48px 24px}
+    .page-cards h2,.page-cards .lead{grid-column:1 / -1}
+  }
 </style>
 </head>
 <body>
@@ -164,6 +169,7 @@
   <span>演題登録：<strong>2027年7月1日〜9月15日（予定）</strong></span>
   <span>会場：<strong>軽井沢プリンスホテル ウエスト</strong></span>
 </div>
+<div class="page-cards-wrap">
 <div class="page-cards">
   <h2>ページを選ぶ</h2>
   <div class="lead">気になる項目からご覧ください。</div>
@@ -195,6 +201,7 @@
     <div class="pc-overlay"></div>
     <div class="pc-text"><span class="pc-icon">⛷️</span><h3>ウインタースポーツ</h3><p>軽井沢プリンスホテルスキー場（外部サイト）</p></div>
   </a>
+</div>
 </div>
 <div class="container">
   <div class="main-content">
